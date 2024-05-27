@@ -4,14 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1開催地の時間と天気を表示するアプリ</title>
-    <link rel="icon" href="favicon.jpg" type="image/x-icon" />
+    <title>世界の時間と天気を表示するアプリ</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>F1開催地の時間と天気を表示します</h1>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        function Modal({ show, setShow, content , link}) {
+            const closeModal = () => {
+                setShow(false)
+            }
+            if (show) {
+                return (
+                    <div id="overlay" onClick={closeModal}>
+                        <div id="content" onClick={(e) => e.stopPropagation()}>
+                            <p><a href={link} target="_blank">{content}</a></p>
+                            <button onClick={closeModal}>Close</button>
+                        </div>
+                    </div >
+                )
+            } else {
+                return null;
+            }
+        }
+
+        const { useState } = React
+        function App() {
+            const [show, setShow] = useState(true)
+            const url = "http://161.95.234.1:8080/index";
+            const text = "こちらをクリック";
+            return (
+                <div>
+                    <button onClick={() => setShow(true)}>Click</button>
+                    <Modal show={show} setShow={setShow} content={text} link={url}/>
+                </div>
+            )
+        }
+        ReactDOM.render(<App />, document.getElementById('root'))
+
+    </script>
+
+    <h1>世界の時間と天気を表示します</h1>
     <img src="https://f1-gate.com/media/2017/20171216-logo_4.jpg" alt="" width="480px" height="270px">
     <div id="app"></div>
     <!-- この辺はimport関係と初期化 -->
