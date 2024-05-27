@@ -66,7 +66,7 @@ const App = () => {
                 <option value="Asia/Qatar">カタール</option>
                 <option value="Asia/Dubai">アブダビ</option>
             </select>
-            <div className="time">{city && `グランプリの現在の時間: ${time}`}</div>
+            <div className="time">{city && `の現在の時間: ${time}`}</div>
             <div className="image">
                 {icon && <img src={`http://openweathermap.org/img/w/${icon}.png`} />}
             </div>
